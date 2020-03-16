@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
+    <body>
+        <style>
+            body {
+                background: white;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
+                align-items: flex-start;
+                padding: 1%;
+                margin: 0px;
+            }
+
+            .dropZone {
+                display: inline-flex;
+                width: 23vw;
+                min-height: 20vh;
+                justify-content: center;
+                flex-wrap: wrap;
+                align-items: flex-start;
+                background: rgb(143, 176, 199);
+                top: 5%;
+                flex: 0 1 auto;
+                position: relative;
+                resize: both;
+                overflow: auto;
+                height: fit-content;
+                border: 1px solid black;
+            }
+
+            .draggable {
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0.5vw;
+                width: 12vw;
+                height: 2vw;
+                padding: 1%;
+                background: rgb(231, 228, 228);
+                box-shadow: 5px 5px 5px 1px #83828285;
+                color: black;
+                border-radius: 5px;
+            }
+
+            .dropzone-hovered,
+            .dropzone-hovered-resizable {
+                position: relative;
+            }
+
+            .taskWrapper {
+                width: 100%;
+            }
+
+            .dropzone-hovered::after,
+            .dropzone-hovered-resizeable::after {
+                z-index: 2;
+                font-size: 2rem;
+                text-align: center;
+                color: white;
+                background: rgba(90, 90, 90, 0.493);
+                width: 100%;
+                height: 100%;
+                position: absolute;
+            }
+
+            .dropzone-hovered-resizeable::after {
+                content: 'Drop Here!! (Resizable container)';
+            }
+
+            .dropzone-hovered::after {
+                content: 'Drop Here!!';
+            }
+        </style>
+        <div
+            ondrop="dropHandler(event, this)"
+            ondragenter="dragEnterHandler(event, this)"
+            ondragleave="removeDroppableIndicatorLayer(this)"
+            ondragover="dragoverHandler(event, this)"
+            class="dropZone"
+        ></div>
+        <div
+            ondrop="dropHandler(event, this)"
+            ondragenter="dragEnterHandler(event, this)"
+            ondragleave="removeDroppableIndicatorLayer(this)"
+            ondragover="dragoverHandler(event, this)"
+            class="dropZone"
+        ></div>
+
+        <div
+            ondrop="dropHandler(event, this)"
+            ondragenter="dragEnterHandler(event, this)"
+            ondragleave="removeDroppableIndicatorLayer(this)"
+            ondragover="dragoverHandler(event, this)"
+            class="dropZone"
+        ></div>
+        <div
+            ondrop="dropHandler(event, this)"
+            ondragenter="dragEnterHandler(event, this)"
+            ondragleave="removeDroppableIndicatorLayer(this)"
+            ondragover="dragoverHandler(event, this)"
+            data-resiable="true"
+            class="dropZone"
+        ></div>
+
+        <div class="taskWrapper">
+            <div id="p1" draggable="true" class="draggable">Drag Me 1!!</div>
+            <div id="p2" draggable="true" class="draggable">Drag Me 2!!</div>
+            <div id="p3" draggable="true" class="draggable">Drag Me 3!!</div>
+            <div id="p4" draggable="true" class="draggable">Drag Me 4!!</div>
+            <div id="p5" draggable="true" class="draggable">Drag Me 5!!</div>
+            <div id="p6" draggable="true" class="draggable">Drag Me 6!!</div>
+            <div id="p7" draggable="true" class="draggable">Drag Me 7!!</div>
+            <div id="p8" draggable="true" class="draggable">Drag Me 8!!</div>
+            <div id="p9" draggable="true" class="draggable">Drag Me 9!!</div>
+        </div>
+
+        <div
+            ondrop="dropHandler(event, this, 'absolute')"
+            ondragenter="dragEnterHandler(event, this)"
+            ondragleave="removeDroppableIndicatorLayer(this)"
+            ondragover="dragoverHandler(event, this)"
+            class="dropZone"
+            data-resizeable="true"
+            style="width:99vw; height: 40vh; margin-top:2%;"
+        ></div>
+
+        <script src="dragHandler.js"></script>
+    </body>
+</html>
