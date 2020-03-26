@@ -3,10 +3,6 @@ h1 {
     text-align: center;
 }
 
-* {
-    transition-property: all;
-    transition-duration: 2s;
-}
 body {
     background: white;
     display: flex;
