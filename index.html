@@ -5,83 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Document</title>
+        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <style>
-            h1 {
-                width: 100%;
-                text-align: center;
-            }
-            body {
-                background: white;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-evenly;
-                align-items: flex-start;
-                padding: 1%;
-                margin: 0px;
-            }
-
-            .dropZone {
-                display: inline-flex;
-                width: 23vw;
-                min-height: 20vh;
-                justify-content: center;
-                flex-wrap: wrap;
-                align-items: flex-start;
-                background: rgb(143, 176, 199);
-                top: 5%;
-                flex: 0 1 auto;
-                position: relative;
-                resize: both;
-                overflow: auto;
-                height: fit-content;
-                border: 1px solid black;
-            }
-
-            .draggable {
-                display: inline-flex;
-                justify-content: center;
-                align-items: center;
-                margin: 0.5vw;
-                width: 12vw;
-                height: 2vw;
-                padding: 1%;
-                background: rgb(231, 228, 228);
-                box-shadow: 5px 5px 5px 1px #83828285;
-                color: black;
-                border-radius: 5px;
-            }
-
-            .dropzone-hovered,
-            .dropzone-hovered-resizable {
-                position: relative;
-            }
-
-            .taskWrapper {
-                width: 100%;
-            }
-
-            .dropzone-hovered::after,
-            .dropzone-hovered-resizeable::after {
-                z-index: 2;
-                font-size: 2rem;
-                text-align: center;
-                color: white;
-                background: rgba(90, 90, 90, 0.493);
-                width: 100%;
-                height: 100%;
-                position: absolute;
-            }
-
-            .dropzone-hovered-resizeable::after {
-                content: 'Drop Here!! (Resizable container)';
-            }
-
-            .dropzone-hovered::after {
-                content: 'Drop Here!!';
-            }
-        </style>
         <h1>Feature 1: Drop in the dropzone.</h1>
         <div
             ondrop="dropHandler(event, this)"

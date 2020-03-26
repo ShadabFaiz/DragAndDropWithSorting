@@ -1,4 +1,5 @@
 // ts-check
+var elementBeingDragged;
 window.addEventListener('DOMContentLoaded', () => {
     const draggableElements = document.querySelectorAll('[draggable=true]');
     for (var i = 0; i < draggableElements.length; i++) {
@@ -24,6 +25,7 @@ function dragstart_handler(event) {
         event.srcElement.style.zIndex = -1;
         event.srcElement.style.opacity = 0.5;
     }, 0);
+    elementBeingDragged = event.srcElement;
     event.dataTransfer.dropEffect = 'move';
 }
 
@@ -49,13 +51,13 @@ function dropHandler(event, dropzone, position) {
         var files = dt.files;
 
         var count = files.length;
-        console.log(dt, files, count);
+        // console.log(dt, files, count);
         return;
     }
 
     this.removeDroppableIndicatorLayer(dropzone);
     const data = JSON.parse(event.dataTransfer.getData('text/plain'));
-
+    // console.log(data);
     let element;
     if (position === 'absolute') {
         element = setDroppableToAbsolute(event);
@@ -102,8 +104,13 @@ function dragoverHandler(event, element) {
 }
 
 function dragOverDraggable(event) {
-    console.log(`dragging over draggable`);
-    console.log(event);
+    if (isBefore(elementBeingDragged, event.target))
+        event.target.parentNode.insertBefore(elementBeingDragged, event.target);
+    else
+        event.target.parentNode.insertBefore(
+            elementBeingDragged,
+            event.target.nextSibling
+        );
 }
 
 var droppableElement;
@@ -126,4 +133,13 @@ function createDropIndictorLayer() {
 function dragEndHandler(event) {
     event.srcElement.style.opacity = 1;
     event.srcElement.style.zIndex = 1;
+}
+
+function isBefore(el1, el2) {
+    var cur;
+    if (el2.parentNode === el1.parentNode) {
+        for (cur = el1.previousSibling; cur; cur = cur.previousSibling) {
+            if (cur === el2) return true;
+        }
+    } else return false;
 }
