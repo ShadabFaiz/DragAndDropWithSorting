@@ -5,6 +5,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const element = draggableElements.item(i);
         element.addEventListener('dragstart', dragstart_handler);
         element.addEventListener('dragend', dragEndHandler);
+        element.addEventListener('dragover', dragOverDraggable);
     }
 });
 
@@ -98,6 +99,11 @@ function dragoverHandler(event, element) {
     event.preventDefault();
     event.stopPropagation();
     return false;
+}
+
+function dragOverDraggable(event) {
+    console.log(`dragging over draggable`);
+    console.log(event);
 }
 
 var droppableElement;

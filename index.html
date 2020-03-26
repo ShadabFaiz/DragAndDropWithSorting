@@ -8,6 +8,10 @@
     </head>
     <body>
         <style>
+            h1 {
+                width: 100%;
+                text-align: center;
+            }
             body {
                 background: white;
                 display: flex;
@@ -78,6 +82,7 @@
                 content: 'Drop Here!!';
             }
         </style>
+        <h1>Feature 1: Drop in the dropzone.</h1>
         <div
             ondrop="dropHandler(event, this)"
             ondragenter="dragEnterHandler(event, this)"
@@ -121,6 +126,7 @@
             <div id="p9" draggable="true" class="draggable">Drag Me 9!!</div>
         </div>
 
+        <h1>Feature 2: Drop anywhere you want</h1>
         <div
             ondrop="dropHandler(event, this, 'absolute')"
             ondragenter="dragEnterHandler(event, this)"
