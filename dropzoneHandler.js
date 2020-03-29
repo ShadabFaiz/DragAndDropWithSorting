@@ -59,3 +59,13 @@ function dropHandler(event, dropzone, position) {
         event.target.appendChild(element);
     } catch (error) {}
 }
+
+function setDroppableToAbsolute(event) {
+    const data = JSON.parse(event.dataTransfer.getData('text/plain'));
+    const element = document.getElementById(data.id);
+    element.style.position = 'absolute';
+    element.style.top = event.offsetY + 'px';
+    element.style.left = event.offsetX + 'px';
+    element.style.transform = `translate(-${data.x + 6}px, -${data.y + 6}px)`;
+    return element;
+}

@@ -6,8 +6,9 @@ window.addEventListener('DOMContentLoaded', () => {
         const element = draggableElements.item(i);
         element.addEventListener('dragstart', dragstart_handler);
         element.addEventListener('dragend', dragEndHandler);
-        if (element.dataset.sortable)
+        if (element.dataset.sortable) {
             element.addEventListener('dragover', dragOverDraggable);
+        }
     }
 });
 
@@ -44,14 +45,22 @@ function isDropElementFile(event) {
     return event.dataTransfer.types.includes('Files');
 }
 
+/**
+ *
+ * @param {DragEvent} event
+ */
 function dragOverDraggable(event) {
-    if (isBefore(elementBeingDragged, event.target))
-        event.target.parentNode.insertBefore(elementBeingDragged, event.target);
-    else
-        event.target.parentNode.insertBefore(
+    if (isBefore(elementBeingDragged, event.currentTarget)) {
+        event.currentTarget.parentNode.insertBefore(
             elementBeingDragged,
-            event.target.nextSibling
+            event.currentTarget
         );
+    } else {
+        event.currentTarget.parentNode.insertBefore(
+            elementBeingDragged,
+            event.currentTarget.nextSibling
+        );
+    }
 }
 
 var droppableElement;
@@ -80,7 +89,11 @@ function isBefore(el1, el2) {
     var cur;
     if (el2.parentNode === el1.parentNode) {
         for (cur = el1.previousSibling; cur; cur = cur.previousSibling) {
-            if (cur === el2) return true;
+            if (cur === el2) {
+                return true;
+            }
         }
-    } else return false;
+        return false;
+    }
+    return false;
 }
