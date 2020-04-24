@@ -3,8 +3,10 @@ var elementBeingDragged;
 const observer = new MutationObserver(setupProcess);
 observer.observe(document.body, {
     attributeFilter: ['draggable'],
-    subtree: true
+    subtree: true,
 });
+
+window.addEventListener('DOMContentLoaded', () => setupProcess());
 
 function setupProcess() {
     const draggableElements = document.querySelectorAll('[draggable=true]');
@@ -29,7 +31,6 @@ function dragstart_handler(event) {
     );
 
     setTimeout(() => {
-        event.srcElement.class;
         event.srcElement.style.zIndex = -1;
         event.srcElement.style.opacity = 0.5;
     }, 0);
